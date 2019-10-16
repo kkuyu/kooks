@@ -9,9 +9,41 @@ const App = () => {
 	const nickname = useInput("John", maxLength, characterCheck); // Multiple validator
 	return (
 		<div className="App">
-			<h1>Hello</h1>
-			<input type="text" placeholder="Name" {...name} />
-			<input type="text" placeholder="Nickname" {...nickname} />
+			<div>
+				<label htmlFor="inputName">Name</label>
+				<input
+					type="text"
+					placeholder="Name"
+					id="inputName"
+					aria-describedby="descriptionName"
+					value={name.value}
+					onChange={name.onChange}
+				/>
+				<p
+					id="descriptionName"
+					style={{ color: `${!name.isError ? "black" : "red"}` }}
+				>
+					Please enter no more than 10 characters.
+				</p>
+			</div>
+			<div>
+				<label htmlFor="inputNickname">Nickname</label>
+				<input
+					type="text"
+					placeholder="Nickname"
+					id="inputNickname"
+					aria-describedby="descriptionNickname"
+					value={nickname.value}
+					onChange={nickname.onChange}
+				/>
+				<p
+					id="descriptionNickname"
+					style={{ color: `${!nickname.isError ? "black" : "red"}` }}
+				>
+					Please enter no more than 10 characters.<br />
+					Special character "@" cannot be included.
+				</p>
+			</div>
 		</div>
 	);
 };

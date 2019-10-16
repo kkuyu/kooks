@@ -1,8 +1,9 @@
 export const useInput = (initialValue, ...validator) => {
 	const [value, setValue] = useState(initialValue);
+	const [isError, setIsError] = useState(false);
+
 	const onChange = event => {
 		const { value } = event.target;
-		let willUpdate = true;
 
 		const validatorArray = validator.length
 			? validator.filter(validator => typeof validator === "function")
@@ -11,10 +12,9 @@ export const useInput = (initialValue, ...validator) => {
 			validator(value),
 		);
 
-		willUpdate = !validatorResult.includes(false);
-		if (willUpdate) {
-			setValue(value);
-		}
+		setIsError(validatorResult.includes(false));
+		setValue(value);
 	};
-	return { value, onChange };
+
+	return { value, onChange, isError };
 };
