@@ -13,19 +13,36 @@ const App = () => {
 	const { tabButtonRef, currentIndex, onClick, onKeyDown } = useTabs(0, content);
 	return (
 		<div>
-			<div ref={tabButtonRef}>
+			<div ref={tabButtonRef} role="tablist">
 				{content.map((content, index) => (
 					<button
-						type="button"
 						key={index}
+						type="button"
+						role="tab"
+						id={`tablist${index}`}
+						aria-controls={`tabpanel${index}`}
 						onClick={() => onClick(index)}
 						onKeyDown={event => onKeyDown(event, index)}
+						style={{ color: `${ index === currentIndex ? "blue" : "black" }`}}
+						aria-selected={ index === currentIndex ? "true" : "false" }
 					>
 						{content.title}
 					</button>
 				))}
 			</div>
-			<div>{content[currentIndex].content}</div>
+			<div>
+				{content.map((content, index) => (
+					<div
+						key={index}
+						role="tabpanel"
+						id={`tabpanel${index}`}
+						aria-labelledby={`tablist${index}`}
+						style={{ display: `${ index === currentIndex ? "block" : "none" }`}}
+					>
+						{content.content}
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };
