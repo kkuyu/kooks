@@ -1,0 +1,1 @@
+export { useFade as default } from "./useFade";

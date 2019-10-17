@@ -9,8 +9,8 @@ Collection of sexy React Hooks ready to install with NPM
 - [x] useHover
 - [x] useConfirm
 - [x] usePreventLeave
-- [ ] usePageLeave
-- [ ] useFadeIn
+- [x] useBeforeLeave
+- [x] useTransition
 - [ ] useFullscreen
 - [ ] useNetwork
 - [ ] useNotification
