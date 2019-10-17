@@ -1,4 +1,4 @@
-const useTitle = initialTitle => {
+export const useTitle = initialTitle => {
 	const [title, setTitle] = useState(initialTitle);
 	const updateTitle = () => {
 		const titleTag = document.querySelector("title");
